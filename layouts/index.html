@@ -1,7 +1,10 @@
 {{ define "main" }}
 <div class="container">
   <section class="homepage-intro">
-    {{ .Content }}
+    <h1>{{ .Title }}</h1>
+    <div class="homepage-intro-body">
+      {{ .Content }}
+    </div>
   </section>
 
   {{ $posts := where .Site.RegularPages "Section" "!=" "pages" }}

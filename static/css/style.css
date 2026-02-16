@@ -254,13 +254,23 @@ main {
   letter-spacing: -0.03em;
   line-height: 1.2;
   color: var(--text);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.homepage-intro p {
+.homepage-intro-body p {
   font-size: var(--text-lg);
   color: var(--text-sub);
+  line-height: 1.7;
   max-width: 54ch;
+}
+
+.homepage-intro-body p + p {
+  margin-top: 0.75rem;
+}
+
+.homepage-intro-body a {
+  font-family: var(--sans);
+  font-weight: 500;
 }
 
 .homepage-feed h2 {
