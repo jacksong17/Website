@@ -1,30 +1,31 @@
 <div class="meta-block">
-  {{ with .Params.recipe }}
+  {{ with .Params.recipe }}{{ if reflect.IsMap . }}
   <div class="meta-section">
     <h3>Recipe Details</h3>
     <dl>
-      {{ with .cuisine }}<dt>Cuisine</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .servings }}<dt>Servings</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .prep_minutes }}<dt>Prep Time</dt><dd>{{ . }} min</dd>{{ end }}
-      {{ with .cook_minutes }}<dt>Cook Time</dt><dd>{{ . }} min</dd>{{ end }}
-      {{ if and .prep_minutes .cook_minutes }}<dt>Total Time</dt><dd>{{ add .prep_minutes .cook_minutes }} min</dd>{{ end }}
-      {{ with .difficulty }}<dt>Difficulty</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "cuisine" }}<dt>Cuisine</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "servings" }}<dt>Servings</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "prep_minutes" }}<dt>Prep Time</dt><dd>{{ . }} min</dd>{{ end }}
+      {{ with index . "cook_minutes" }}<dt>Cook Time</dt><dd>{{ . }} min</dd>{{ end }}
+      {{ $prep := index . "prep_minutes" }}{{ $cook := index . "cook_minutes" }}
+      {{ if and $prep $cook }}<dt>Total Time</dt><dd>{{ add $prep $cook }} min</dd>{{ end }}
+      {{ with index . "difficulty" }}<dt>Difficulty</dt><dd>{{ . }}</dd>{{ end }}
     </dl>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
-  {{ with .Params.ingredients }}
+  {{ with .Params.ingredients }}{{ if reflect.IsSlice . }}
   <div class="meta-section">
     <h3>Ingredients</h3>
     <ul class="ingredients-list">
       {{ range . }}
-        <li><strong>{{ .amount }}</strong> {{ .name }}</li>
+        {{ if reflect.IsMap . }}<li><strong>{{ index . "amount" }}</strong> {{ index . "name" }}</li>{{ end }}
       {{ end }}
     </ul>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
-  {{ with .Params.equipment }}
+  {{ with .Params.equipment }}{{ if reflect.IsSlice . }}
   <div class="meta-section">
     <h3>Equipment</h3>
     <ul>
@@ -33,5 +34,5 @@
       {{ end }}
     </ul>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 </div>

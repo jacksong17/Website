@@ -3,10 +3,11 @@
   <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
   <div class="post-card-row">
     <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-    {{ with .Params.recipe }}
-      {{ with .cuisine }}<span class="post-card-date">{{ . }}</span>{{ end }}
-      {{ if and .prep_minutes .cook_minutes }}<span class="post-card-date">{{ add .prep_minutes .cook_minutes }} min</span>{{ end }}
-    {{ end }}
+    {{ with .Params.recipe }}{{ if reflect.IsMap . }}
+      {{ with index . "cuisine" }}<span class="post-card-date">{{ . }}</span>{{ end }}
+      {{ $prep := index . "prep_minutes" }}{{ $cook := index . "cook_minutes" }}
+      {{ if and $prep $cook }}<span class="post-card-date">{{ add $prep $cook }} min</span>{{ end }}
+    {{ end }}{{ end }}
   </div>
   {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
 </article>

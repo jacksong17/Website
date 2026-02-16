@@ -1,27 +1,29 @@
 <div class="meta-block">
-  {{ with .Params.position }}
+  {{ with .Params.position }}{{ if reflect.IsMap . }}
   <div class="meta-section">
     <h3>Position</h3>
     <dl>
-      {{ with .status }}<dt>Status</dt><dd><span class="position-status status-{{ . }}">{{ . }}</span></dd>{{ end }}
-      {{ with .direction }}<dt>Direction</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .vehicle }}<dt>Vehicle</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .thesis }}<dt>Thesis</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "status" }}<dt>Status</dt><dd><span class="position-status status-{{ . }}">{{ . }}</span></dd>{{ end }}
+      {{ with index . "direction" }}<dt>Direction</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "vehicle" }}<dt>Vehicle</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "thesis" }}<dt>Thesis</dt><dd>{{ . }}</dd>{{ end }}
     </dl>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
-  {{ with .Params.updates }}
+  {{ with .Params.updates }}{{ if reflect.IsSlice . }}
   <div class="meta-section">
     <h3>Updates</h3>
     <div class="updates-timeline">
       {{ range . }}
+      {{ if reflect.IsMap . }}
       <div class="update-entry">
-        <time>{{ .date }}</time>
-        <p>{{ .note }}</p>
+        <time>{{ index . "date" }}</time>
+        <p>{{ index . "note" }}</p>
       </div>
+      {{ end }}
       {{ end }}
     </div>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 </div>

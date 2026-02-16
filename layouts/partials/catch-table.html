@@ -1,4 +1,4 @@
-{{ with .Params.catches }}
+{{ with .Params.catches }}{{ if reflect.IsSlice . }}
 <div class="table-responsive">
   <table class="catch-table">
     <thead>
@@ -14,17 +14,19 @@
     </thead>
     <tbody>
       {{ range . }}
+      {{ if reflect.IsMap . }}
       <tr>
-        <td>{{ .species }}</td>
-        <td>{{ .count }}</td>
-        <td>{{ with .best_weight_lb }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-        <td>{{ .technique }}</td>
-        <td>{{ with .lure }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-        <td>{{ with .depth_ft }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-        <td>{{ with .structure }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ index . "species" }}</td>
+        <td>{{ index . "count" }}</td>
+        <td>{{ with index . "best_weight_lb" }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ index . "technique" }}</td>
+        <td>{{ with index . "lure" }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ with index . "depth_ft" }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ with index . "structure" }}{{ . }}{{ else }}&mdash;{{ end }}</td>
       </tr>
+      {{ end }}
       {{ end }}
     </tbody>
   </table>
 </div>
-{{ end }}
+{{ end }}{{ end }}

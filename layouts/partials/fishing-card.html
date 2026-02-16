@@ -3,8 +3,8 @@
   <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
   <div class="post-card-row">
     <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-    {{ with .Params.location }}<span class="post-card-date">{{ .body_of_water }}{{ with .region }}, {{ . }}{{ end }}</span>{{ end }}
-    {{ with .Params.conditions }}{{ with .water_temp_f }}<span class="post-card-date">{{ . }}°F</span>{{ end }}{{ end }}
+    {{ with .Params.location }}{{ if reflect.IsMap . }}<span class="post-card-date">{{ index . "body_of_water" }}{{ with index . "region" }}, {{ . }}{{ end }}</span>{{ end }}{{ end }}
+    {{ with .Params.conditions }}{{ if reflect.IsMap . }}{{ with index . "water_temp_f" }}<span class="post-card-date">{{ . }}°F</span>{{ end }}{{ end }}{{ end }}
   </div>
   {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
 </article>

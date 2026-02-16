@@ -1,28 +1,28 @@
 <div class="meta-block">
-  {{ with .Params.location }}
+  {{ with .Params.location }}{{ if reflect.IsMap . }}
   <div class="meta-section">
     <h3>Location</h3>
     <dl>
-      {{ with .body_of_water }}<dt>Body of Water</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .region }}<dt>Region</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .access_point }}<dt>Access Point</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "body_of_water" }}<dt>Body of Water</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "region" }}<dt>Region</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "access_point" }}<dt>Access Point</dt><dd>{{ . }}</dd>{{ end }}
     </dl>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
-  {{ with .Params.conditions }}
+  {{ with .Params.conditions }}{{ if reflect.IsMap . }}
   <div class="meta-section">
     <h3>Conditions</h3>
     <dl>
-      {{ with .weather }}<dt>Weather</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .air_temp_f }}<dt>Air Temp</dt><dd>{{ . }}°F</dd>{{ end }}
-      {{ with .water_temp_f }}<dt>Water Temp</dt><dd>{{ . }}°F</dd>{{ end }}
-      {{ with .wind }}<dt>Wind</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .pressure_inhg }}<dt>Pressure</dt><dd>{{ . }} inHg</dd>{{ end }}
-      {{ with .water_clarity }}<dt>Water Clarity</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "weather" }}<dt>Weather</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "air_temp_f" }}<dt>Air Temp</dt><dd>{{ . }}°F</dd>{{ end }}
+      {{ with index . "water_temp_f" }}<dt>Water Temp</dt><dd>{{ . }}°F</dd>{{ end }}
+      {{ with index . "wind" }}<dt>Wind</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "pressure_inhg" }}<dt>Pressure</dt><dd>{{ . }} inHg</dd>{{ end }}
+      {{ with index . "water_clarity" }}<dt>Water Clarity</dt><dd>{{ . }}</dd>{{ end }}
     </dl>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
   {{ with .Params.forage }}
   <div class="meta-section">
@@ -31,15 +31,15 @@
   </div>
   {{ end }}
 
-  {{ with .Params.results }}
+  {{ with .Params.results }}{{ if reflect.IsMap . }}
   <div class="meta-section">
     <h3>Results Summary</h3>
     <dl>
-      {{ with .total_kept }}<dt>Kept</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .total_released }}<dt>Released</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .top_technique }}<dt>Top Technique</dt><dd>{{ . }}</dd>{{ end }}
-      {{ with .top_lure }}<dt>Top Lure</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "total_kept" }}<dt>Kept</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "total_released" }}<dt>Released</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "top_technique" }}<dt>Top Technique</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with index . "top_lure" }}<dt>Top Lure</dt><dd>{{ . }}</dd>{{ end }}
     </dl>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 </div>
