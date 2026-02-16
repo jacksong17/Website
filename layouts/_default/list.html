@@ -1,10 +1,14 @@
 {{ define "main" }}
 <div class="container">
-  <h1>{{ .Title }}</h1>
-  {{ with .Content }}<div class="section-description prose">{{ . }}</div>{{ end }}
+  <header class="section-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div>{{ . }}</div>{{ end }}
+  </header>
   <div class="post-list">
     {{ range .Pages.ByDate.Reverse }}
       {{ partial "post-card.html" . }}
+    {{ else }}
+      <p class="feed-empty">Nothing here yet.</p>
     {{ end }}
   </div>
 </div>

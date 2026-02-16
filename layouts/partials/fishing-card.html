@@ -1,18 +1,10 @@
 <article class="post-card">
-  <span class="category-label category-fishing">fishing</span>
+  <span class="cat cat-fishing">Fishing</span>
   <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-  <div class="card-meta">
-    {{ with .Params.location }}
-      <span class="meta-item"><strong>Location:</strong> {{ .body_of_water }}{{ with .region }}, {{ . }}{{ end }}</span>
-    {{ end }}
-    {{ with .Params.conditions }}
-      {{ with .water_temp_f }}<span class="meta-item"><strong>Water:</strong> {{ . }}°F</span>{{ end }}
-      {{ with .weather }}<span class="meta-item"><strong>Weather:</strong> {{ . }}</span>{{ end }}
-    {{ end }}
-    {{ with .Params.results }}
-      {{ with .top_technique }}<span class="meta-item"><strong>Best:</strong> {{ . }}</span>{{ end }}
-    {{ end }}
+  <div class="post-card-row">
+    <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+    {{ with .Params.location }}<span class="post-card-date">{{ .body_of_water }}{{ with .region }}, {{ . }}{{ end }}</span>{{ end }}
+    {{ with .Params.conditions }}{{ with .water_temp_f }}<span class="post-card-date">{{ . }}°F</span>{{ end }}{{ end }}
   </div>
   {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
 </article>

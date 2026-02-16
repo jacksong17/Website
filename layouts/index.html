@@ -1,13 +1,15 @@
 {{ define "main" }}
 <div class="container">
-  <section class="homepage-intro prose">
+  <section class="homepage-intro">
     {{ .Content }}
   </section>
 
+  {{ $posts := where .Site.RegularPages "Section" "!=" "pages" }}
+  {{ if $posts }}
   <section class="homepage-feed">
-    <h2>Recent Posts</h2>
+    <h2>Recent</h2>
     <div class="post-list">
-      {{ range (where .Site.RegularPages "Section" "!=" "pages") | first 20 }}
+      {{ range $posts | first 20 }}
         {{ if eq .Section "fishing" }}
           {{ partial "fishing-card.html" . }}
         {{ else if eq .Section "recipes" }}
@@ -20,5 +22,6 @@
       {{ end }}
     </div>
   </section>
+  {{ end }}
 </div>
 {{ end }}

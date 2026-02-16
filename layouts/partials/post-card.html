@@ -1,6 +1,8 @@
 <article class="post-card">
-  <span class="category-label category-{{ .Section }}">{{ .Section }}</span>
+  <span class="cat cat-{{ .Section }}">{{ .Section }}</span>
   <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+  <div class="post-card-row">
+    <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+  </div>
   {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
 </article>
