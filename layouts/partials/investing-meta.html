@@ -1,0 +1,27 @@
+<div class="meta-block">
+  {{ with .Params.position }}
+  <div class="meta-section">
+    <h3>Position</h3>
+    <dl>
+      {{ with .status }}<dt>Status</dt><dd><span class="position-status status-{{ . }}">{{ . }}</span></dd>{{ end }}
+      {{ with .direction }}<dt>Direction</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with .vehicle }}<dt>Vehicle</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with .thesis }}<dt>Thesis</dt><dd>{{ . }}</dd>{{ end }}
+    </dl>
+  </div>
+  {{ end }}
+
+  {{ with .Params.updates }}
+  <div class="meta-section">
+    <h3>Updates</h3>
+    <div class="updates-timeline">
+      {{ range . }}
+      <div class="update-entry">
+        <time>{{ .date }}</time>
+        <p>{{ .note }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>

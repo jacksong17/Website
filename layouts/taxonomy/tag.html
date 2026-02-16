@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="container">
+  <h1>Tagged: {{ .Title }}</h1>
+  <div class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

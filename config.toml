@@ -1,0 +1,71 @@
+baseURL = "https://jacksong17.github.io/"
+languageCode = "en-us"
+title = "Jackson Grimm"
+[pagination]
+  pagerSize = 20
+enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[taxonomies]
+  tag = "tags"
+
+[permalinks]
+  fishing = "/fishing/:slug/"
+  recipes = "/recipes/:slug/"
+  investing = "/investing/:slug/"
+  portfolio = "/portfolio/:slug/"
+  blog = "/blog/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS", "ROBOTS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Fishing"
+  url = "/fishing/"
+  weight = 2
+
+[[menu.main]]
+  name = "Recipes"
+  url = "/recipes/"
+  weight = 3
+
+[[menu.main]]
+  name = "Investing"
+  url = "/investing/"
+  weight = 4
+
+[[menu.main]]
+  name = "Portfolio"
+  url = "/portfolio/"
+  weight = 5
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 6
+
+[[menu.main]]
+  name = "About"
+  url = "/pages/about/"
+  weight = 7
+
+[[menu.main]]
+  name = "Resume"
+  url = "/files/resume.pdf"
+  weight = 8
+  [menu.main.params]
+    download = true

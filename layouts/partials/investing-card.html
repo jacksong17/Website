@@ -1,0 +1,12 @@
+<article class="post-card">
+  <span class="category-label category-investing">investing</span>
+  <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+  <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+  <div class="card-meta">
+    {{ with .Params.position }}
+      {{ with .status }}<span class="meta-item"><strong>Status:</strong> {{ . }}</span>{{ end }}
+      {{ with .direction }}<span class="meta-item"><strong>Direction:</strong> {{ . }}</span>{{ end }}
+    {{ end }}
+  </div>
+  {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
+</article>

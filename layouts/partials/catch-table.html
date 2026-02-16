@@ -1,0 +1,30 @@
+{{ with .Params.catches }}
+<div class="table-responsive">
+  <table class="catch-table">
+    <thead>
+      <tr>
+        <th>Species</th>
+        <th>Count</th>
+        <th>Best (lb)</th>
+        <th>Technique</th>
+        <th>Lure</th>
+        <th>Depth (ft)</th>
+        <th>Structure</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range . }}
+      <tr>
+        <td>{{ .species }}</td>
+        <td>{{ .count }}</td>
+        <td>{{ with .best_weight_lb }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ .technique }}</td>
+        <td>{{ with .lure }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ with .depth_ft }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td>{{ with .structure }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
+{{ end }}

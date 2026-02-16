@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="container">
+  <h1>All Tags</h1>
+  <div class="tags-index">
+    {{ range .Pages.ByTitle }}
+      <a href="{{ .Permalink }}" class="tag-pill">{{ .Title }} <span class="tag-count">({{ len .Pages }})</span></a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

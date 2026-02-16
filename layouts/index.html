@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="container">
+  <section class="homepage-intro prose">
+    {{ .Content }}
+  </section>
+
+  <section class="homepage-feed">
+    <h2>Recent Posts</h2>
+    <div class="post-list">
+      {{ range (where .Site.RegularPages "Section" "!=" "pages") | first 20 }}
+        {{ if eq .Section "fishing" }}
+          {{ partial "fishing-card.html" . }}
+        {{ else if eq .Section "recipes" }}
+          {{ partial "recipe-card.html" . }}
+        {{ else if eq .Section "investing" }}
+          {{ partial "investing-card.html" . }}
+        {{ else }}
+          {{ partial "post-card.html" . }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}

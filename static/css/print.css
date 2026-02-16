@@ -1,0 +1,46 @@
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .nav-toggle-label,
+  .post-tags {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .meta-block {
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+  }
+
+  .catch-table th,
+  .catch-table td {
+    border: 1px solid #ccc;
+  }
+}

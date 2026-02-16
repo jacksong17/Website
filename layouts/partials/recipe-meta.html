@@ -1,0 +1,37 @@
+<div class="meta-block">
+  {{ with .Params.recipe }}
+  <div class="meta-section">
+    <h3>Recipe Details</h3>
+    <dl>
+      {{ with .cuisine }}<dt>Cuisine</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with .servings }}<dt>Servings</dt><dd>{{ . }}</dd>{{ end }}
+      {{ with .prep_minutes }}<dt>Prep Time</dt><dd>{{ . }} min</dd>{{ end }}
+      {{ with .cook_minutes }}<dt>Cook Time</dt><dd>{{ . }} min</dd>{{ end }}
+      {{ if and .prep_minutes .cook_minutes }}<dt>Total Time</dt><dd>{{ add .prep_minutes .cook_minutes }} min</dd>{{ end }}
+      {{ with .difficulty }}<dt>Difficulty</dt><dd>{{ . }}</dd>{{ end }}
+    </dl>
+  </div>
+  {{ end }}
+
+  {{ with .Params.ingredients }}
+  <div class="meta-section">
+    <h3>Ingredients</h3>
+    <ul class="ingredients-list">
+      {{ range . }}
+        <li><strong>{{ .amount }}</strong> {{ .name }}</li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  {{ with .Params.equipment }}
+  <div class="meta-section">
+    <h3>Equipment</h3>
+    <ul>
+      {{ range . }}
+        <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</div>

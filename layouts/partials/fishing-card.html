@@ -1,0 +1,18 @@
+<article class="post-card">
+  <span class="category-label category-fishing">fishing</span>
+  <h2 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+  <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+  <div class="card-meta">
+    {{ with .Params.location }}
+      <span class="meta-item"><strong>Location:</strong> {{ .body_of_water }}{{ with .region }}, {{ . }}{{ end }}</span>
+    {{ end }}
+    {{ with .Params.conditions }}
+      {{ with .water_temp_f }}<span class="meta-item"><strong>Water:</strong> {{ . }}°F</span>{{ end }}
+      {{ with .weather }}<span class="meta-item"><strong>Weather:</strong> {{ . }}</span>{{ end }}
+    {{ end }}
+    {{ with .Params.results }}
+      {{ with .top_technique }}<span class="meta-item"><strong>Best:</strong> {{ . }}</span>{{ end }}
+    {{ end }}
+  </div>
+  {{ with .Params.summary }}<p class="post-card-summary">{{ . }}</p>{{ end }}
+</article>

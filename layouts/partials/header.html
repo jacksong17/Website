@@ -1,0 +1,19 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="site-title">{{ .Site.Title }}</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </label>
+    <nav class="site-nav" aria-label="Main navigation">
+      {{ range .Site.Menus.main }}
+        {{ if .Params.download }}
+          <a href="{{ .URL }}" download>{{ .Name }}</a>
+        {{ else }}
+          <a href="{{ .URL }}"{{ if eq $.RelPermalink .URL }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+    </nav>
+  </div>
+</header>

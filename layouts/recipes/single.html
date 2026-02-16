@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="container">
+  <header class="post-header">
+    <h1>{{ .Title }}</h1>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    {{ with .Params.tags }}
+    <div class="post-tags">
+      {{ range . }}
+        {{ with $.Site.GetPage (printf "/tags/%s" .) }}
+          {{ partial "tag-pill.html" . }}
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  {{ partial "recipe-meta.html" . }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
